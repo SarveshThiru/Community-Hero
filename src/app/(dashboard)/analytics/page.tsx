@@ -94,7 +94,7 @@ export default function AnalyticsDashboard() {
       changeType: analytics.resolutionRate > 90 ? "positive" : "negative" as const,
       icon: <TrendingUp className="h-6 w-6" />,
     },
-  ] : []
+  ] as const : []
 
   return (
     <div className="min-h-screen bg-white">
@@ -147,10 +147,10 @@ export default function AnalyticsDashboard() {
 
         <Tabs value="overview" onValueChange={() => {}} className="space-y-6">
           <TabsList>
-            <TabsTrigger>Overview</TabsTrigger>
-            <TabsTrigger>Categories</TabsTrigger>
-            <TabsTrigger>Geographic</TabsTrigger>
-            <TabsTrigger>Performance</TabsTrigger>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="categories">Categories</TabsTrigger>
+            <TabsTrigger value="geographic">Geographic</TabsTrigger>
+            <TabsTrigger value="performance">Performance</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">

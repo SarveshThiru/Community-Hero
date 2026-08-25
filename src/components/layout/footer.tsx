@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Shield, MapPin, Users, Heart, Github, Twitter, Linkedin } from "lucide-react"
+import { Shield, MapPin, Users, Heart, GitBranch, MessageSquare, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const footerLinks = {
@@ -30,9 +30,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com", icon: Github },
-  { name: "Twitter", href: "https://twitter.com", icon: Twitter },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+  { name: "GitHub", href: "https://github.com", icon: GitBranch },
+  { name: "Twitter", href: "https://twitter.com", icon: MessageSquare },
+  { name: "LinkedIn", href: "https://linkedin.com", icon: User },
 ]
 
 export function Footer() {

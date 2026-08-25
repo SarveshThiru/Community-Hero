@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
     .select("*", { count: "exact" })
     .order("created_at", { ascending: false })
 
-  if (status) query = query.eq("status", status)
+  if (status) query = query.eq("status", status as "reported" | "verified" | "assigned" | "in_progress" | "resolved" | "rejected")
   if (category) query = query.eq("category", category)
-  if (severity) query = query.eq("severity", severity)
+  if (severity) query = query.eq("severity", severity as "critical" | "high" | "medium" | "low")
 
   if (latitude && longitude) {
     const { data: nearbyIssues } = await supabase.rpc("get_nearby_issues", {

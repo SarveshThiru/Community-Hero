@@ -28,7 +28,7 @@ export function useAnalytics(filters?: {
       if (fetchError) {
         setError(fetchError.message)
       } else {
-        setAnalytics(data as AnalyticsData)
+        setAnalytics(data as unknown as AnalyticsData)
       }
       setLoading(false)
     }

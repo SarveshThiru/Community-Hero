@@ -16,7 +16,7 @@ import { ISSUE_CATEGORIES, ISSUE_STATUSES, SEVERITY_LEVELS, getCategoryIcon, get
 import { cn } from "@/lib/utils"
 
 const CATEGORY_FILTERS = [
-  { value: "all", label: "All Categories" },
+  { value: "all", label: "All Categories", icon: "ALL" },
   ...ISSUE_CATEGORIES,
 ]
 

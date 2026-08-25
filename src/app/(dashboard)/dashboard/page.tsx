@@ -92,7 +92,7 @@ export default function CitizenDashboard() {
       changeType: "negative" as const,
       href: "/map",
     },
-  ]
+] as const
 
   if (loading) {
     return (

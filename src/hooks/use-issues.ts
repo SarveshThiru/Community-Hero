@@ -41,13 +41,13 @@ export function useIssues(filters?: {
       .order("created_at", { ascending: false })
 
     if (f?.status) {
-      query = query.eq("status", f.status)
+      query = query.eq("status", f.status as "reported" | "verified" | "assigned" | "in_progress" | "resolved" | "rejected")
     }
     if (f?.category) {
       query = query.eq("category", f.category)
     }
     if (f?.severity) {
-      query = query.eq("severity", f.severity)
+      query = query.eq("severity", f.severity as "critical" | "high" | "medium" | "low")
     }
 
     const page = f?.page || 1
@@ -121,7 +121,7 @@ export function useNearbyIssues(latitude: number, longitude: number, radius = 50
     const { data, error } = await supabase.rpc("find_duplicate_issues", {
       lat: latitude,
       lng: longitude,
-      category_filter: "all",
+      category: "all",
       radius_meters: radius,
     })
 
@@ -150,7 +150,7 @@ export function useCreateIssue() {
     title: string
     description: string
     category: string
-    severity: string
+    severity: "critical" | "high" | "medium" | "low"
     latitude: number
     longitude: number
     address: string
@@ -198,13 +198,15 @@ export function useCreateIssue() {
   return { createIssue, loading, error }
 }
 
+type IssueUpdateInput = Pick<Issue, "title" | "description" | "category" | "severity" | "status" | "latitude" | "longitude" | "address" | "images" | "assignee_id" | "department">
+
 export function useUpdateIssue() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const supabase = createClient()
   const { user } = useAuth()
 
-  const updateIssue = async (issueId: string, updates: Partial<Issue>, message?: string) => {
+  const updateIssue = async (issueId: string, updates: IssueUpdateInput, message?: string) => {
     if (!user) {
       setError("User not authenticated")
       return { error: new Error("User not authenticated") }
