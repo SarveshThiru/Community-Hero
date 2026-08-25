@@ -1,0 +1,126 @@
+{
+  "title": "Choose the visual world - bolder hand",
+  "question": "You asked for bolder. All previous directions are eliminated. The dice lead with the data field; the concourse board beat it on both axes.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The City as Data Field",
+      "kicker": "THE ROLL",
+      "lineage": "Ryoji Ikeda's Datamatics - pure signal installations",
+      "thesis": "Every report is a column of pure signal; the city renders as black-and-white data until something changes - then the field inverts.",
+      "palette": ["#000000", "#ffffff"],
+      "materials": ["barcode bar-fields", "hairline rules", "monospace numerics"],
+      "viewport": "A full-height field of vertical bars - one column per issue - with dense monospace margins; selecting a report pulls its numbers into focus while the rest faints to pattern.",
+      "raised": [
+        { "from": "wall calendar", "raise": "Today carries a printed ring; anything resolved grays toward the board like past dates." },
+        { "from": "sneaker archive", "raise": "Every record owns a strict end-label grid: name, category, status, age - never decorative rows." },
+        { "from": "iridescent cloud", "raise": "Color enters only at hairline edges - urgency lives in a single band, never a wash." }
+      ],
+      "risk": "Residents may find it cold and unreadable; pure B/W strips away the color semantics severity needs, and strobing is an accessibility hazard we would have to engineer away.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "signal header", "x": 0, "y": 0, "w": 12, "h": 1, "accent": true },
+          { "label": "barcode issue columns", "x": 0, "y": 1, "w": 9, "h": 9 },
+          { "label": "focused readout", "x": 9, "y": 1, "w": 3, "h": 9, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-splitflap",
+      "label": "The Civic Concourse",
+      "verdict": "wins",
+      "lineage": "railway split-flap departure boards at rush hour",
+      "thesis": "Every reported issue departs on the ward's split-flap board - filed, verified, assigned, resolved - flipping character by character as the city works.",
+      "palette": ["#0e0f11", "#f5f5f0", "#b8bcbf", "#ffb020", "#8a2b23"],
+      "materials": ["matte black flaps", "brushed steel frame", "amber row lamps"],
+      "viewport": "A ruled board of live issue rows under a steel header; columns never move, only their flaps; aging rows light an amber lamp; rejected rows drop to dim red type; the map rides beside the board.",
+      "case": "Beats the data field on both axes: every resident already reads a departure board, and the fixed-column table stays semantically honest underneath the theater.",
+      "risk": "The flip theater must stay quiet enough for daily use - one clack per real change, never ambient motion.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "steel board header", "x": 0, "y": 0, "w": 12, "h": 1, "accent": true },
+          { "label": "split-flap issue rows", "x": 0, "y": 1, "w": 8, "h": 7 },
+          { "label": "ward map", "x": 8, "y": 1, "w": 4, "h": 7 },
+          { "label": "report window", "x": 0, "y": 8, "w": 12, "h": 2, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-transit",
+      "label": "The Midnight Diagram",
+      "verdict": "competitive",
+      "lineage": "metro rail maps fired as midnight-blue enamel murals",
+      "thesis": "Your report is a route: from Reported it travels line by line through Verify and Assign until it arrives at Resolved - the city drawn as one legible promise of movement.",
+      "palette": ["#101c3a", "#f2f0e9", "#e2231a", "#f2a900", "#159a54"],
+      "materials": ["enamel panel", "porcelain station ticks", "45/90-degree line discipline"],
+      "viewport": "Midnight-blue enamel ground; the community map styled as a living transit diagram; each issue detail shows its route so far with interchange circles at department hand-offs.",
+      "case": "Holds both axes against the leader - Delhi Metro resonance is enormous and wayfinding clarity is its native tongue - but loses narrowly to the concourse because forms and lists are not diagram-native.",
+      "risk": "Dark enamel grounds fight outdoor daylight reading; the diagram must lighten for street use.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram-hero.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "enamel masthead", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true },
+          { "label": "diagram map", "x": 0, "y": 2, "w": 8, "h": 6 },
+          { "label": "route trace panel", "x": 8, "y": 2, "w": 4, "h": 6 },
+          { "label": "interchange legend", "x": 0, "y": 8, "w": 12, "h": 2 }
+        ]
+      }
+    },
+    {
+      "id": "challenger-calendar",
+      "label": "The Ward Almanac",
+      "verdict": "declined",
+      "lineage": "vernacular advertising wall calendars",
+      "palette": ["#f3ead7", "#d94f30", "#c9a227", "#3e7c4f"],
+      "materials": ["painted plate", "tear-off date pad", "gold rule"],
+      "viewport": "A painted ward scene above a tear-off pad of the month's civic life; today takes the printed ring.",
+      "case": "Beloved vernacular form, but a time-axis-only world cannot carry maps, triage, or forms.",
+      "kept": "Today-ring state marking and the leaf-tear transition for resolution.",
+      "risk": "Nostalgia overwhelms function."
+    },
+    {
+      "id": "challenger-sneaker",
+      "label": "The Archive Wall",
+      "verdict": "declined",
+      "lineage": "sneaker archive box-stack walls",
+      "palette": ["#c65a1e", "#17181a", "#faf8f2"],
+      "materials": ["burnt orange board", "one-line silhouette art", "tissue fold"],
+      "viewport": "Reports shelved as end-labeled boxes; pulling one half out previews it; opening folds back tissue to the full report.",
+      "case": "Retail delight, wrong institution - browsing boxes hides the urgency a city board must surface.",
+      "kept": "The strict end-label grid and pull-half-out preview gesture.",
+      "risk": "Reads commercial, not civic."
+    },
+    {
+      "id": "challenger-cloud",
+      "label": "The Diffraction Ledger",
+      "verdict": "declined",
+      "lineage": "iridescent cloud edges",
+      "palette": ["#fbfbfa", "#64748b", "#99e2c0", "#f3b8c8", "#a78bdb"],
+      "materials": ["achromatic text field", "spectral hairline bands"],
+      "viewport": "Quiet white records fringed by a narrow spectral band that encodes urgency at the edge.",
+      "case": "Beautiful restraint, but pastel physics say weather app, not public accountability.",
+      "kept": "Color confined to hairline band edges; the text field stays achromatic.",
+      "risk": "Too ephemeral for potholes and sewage."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "id": "canon",
+    "label": "The category standard",
+    "thesis": "What every civic-reporting SaaS ships, executed impeccably.",
+    "palette": ["#ffffff", "#111827", "#2563eb"],
+    "materials": ["clean grid", "rounded cards", "product screenshots"],
+    "viewport": "The arrangement a visitor expects: hero headline, map screenshot, feature cards.",
+    "risk": "Indistinguishable from the competition by design."
+  },
+  "steer": true
+}

@@ -1,26 +1,274 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+   CIVIC SIGNAL - direction contract (evolved from seed d890a4a8)
+   THESIS: every reported issue is live signal - now rendered with the color
+   and depth of a designed product, not the austerity of a printout.
+   OWN-WORLD: trustworthy blue-600 leads actions and focus; semantic status
+   colors (green/amber/orange/red) make state scannable; soft radii (12-16px),
+   layered shadows, JetBrains Mono keeps the data-instrument personality.
+   STORY: residents read the city's work at a glance - color carries status,
+   type carries precision.
+   FIRST VIEWPORT: gradient-lit hero with monumental mono headline, live ward
+   counters in blue, one dominant Report action.
+   FINISH: unreviewed and undocumented is unfinished; this build ends with the
+   finish review, the verdict, DESIGN.md, and every shipping raster carrying
+   its provenance.
+*/
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Civic Signal palette: trustworthy blue leads, semantic status colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d5ff;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7e22ce;
+  --color-purple-800: #6b21a8;
+
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+
+  /* Semantic aliases used by primitives */
+  --color-border: #e5e7eb;
+  --color-input: #d1d5db;
+  --color-ring: #2563eb;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #111827;
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+  --color-accent: #eff6ff;
+  --color-accent-foreground: #1d4ed8;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-card: #ffffff;
+  --color-card-foreground: #111827;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111827;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, monospace;
+
+  --animate-invert-flicker: invert-flicker 0.36s steps(2, jump-none) 1;
+  --animate-flap-tick: flap-tick 0.24s steps(3, jump-none) 1;
+
+  @keyframes invert-flicker {
+    0% { filter: invert(1); }
+    100% { filter: invert(0); }
+  }
+  @keyframes flap-tick {
+    0% { transform: translateY(-0.18em); opacity: 0.2; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    background: #f9fafb;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "zero" 1, "tnum" 1, "ss01" 1;
+    letter-spacing: -0.006em;
+  }
+  ::selection {
+    background: #2563eb;
+    color: #ffffff;
+  }
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
 }
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Diagonal hatch - intermediate state texture */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(37 99 235 / 0.12) 0,
+      rgb(37 99 235 / 0.12) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  }
+  .hatch-dense {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(37 99 235 / 0.2) 0,
+      rgb(37 99 235 / 0.2) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+  /* Critical severity: soft red frame */
+  .edge-critical {
+    outline: 1px solid #ef4444;
+    outline-offset: -1px;
+  }
+  .edge-critical-top {
+    outline: 1px solid #ef4444;
+    outline-offset: -1px;
+  }
+  /* Barcode strip motif */
+  .barcode-strip {
+    background-image: repeating-linear-gradient(
+      90deg,
+      #111827 0,
+      #111827 2px,
+      transparent 2px,
+      transparent 5px,
+      #111827 5px,
+      #111827 6px,
+      transparent 6px,
+      transparent 11px
+    );
+  }
+  .label-caps {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+  /* Soft elevation */
+  .elevation-1 {
+    box-shadow: 0 1px 2px rgb(17 24 39 / 0.06), 0 1px 3px rgb(17 24 39 / 0.08);
+  }
+  .elevation-2 {
+    box-shadow: 0 4px 6px -1px rgb(17 24 39 / 0.07), 0 2px 4px -2px rgb(17 24 39 / 0.07);
+  }
+  .elevation-3 {
+    box-shadow: 0 10px 15px -3px rgb(17 24 39 / 0.08), 0 4px 6px -4px rgb(17 24 39 / 0.06);
+  }
+}
+
+/* Legacy animation shims kept for existing markup */
+@keyframes slide-in-from-top-2 {
+  from { opacity: 0; transform: translateY(-0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-from-bottom-2 {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-in { animation: animate-in 0.2s ease-out; }
+@keyframes animate-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in-0 { animation: fade-in 0.2s ease-out; }
+.zoom-in-95 { animation: zoom-in 0.2s ease-out; }
+.slide-in-from-top-2 { animation: slide-in-from-top-2 0.2s ease-out; }
+.slide-in-from-bottom-2 { animation: slide-in-from-bottom-2 0.2s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
