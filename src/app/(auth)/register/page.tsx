@@ -13,6 +13,32 @@ import { useAuth } from "@/hooks/use-auth"
 import { cn } from "@/lib/utils"
 import { Suspense } from "react"
 
+function RegisterFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="barcode-strip mb-0 h-4 w-full border border-b-0 border-black" aria-hidden="true" />
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <Link href="/" className="inline-flex items-center gap-2 mb-4">
+              <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
+              <span className="text-sm font-bold uppercase tracking-tighter">Community Hero</span>
+            </Link>
+            <CardTitle className="text-2xl font-bold uppercase tracking-tight">Enroll</CardTitle>
+            <CardDescription>Join thousands of citizens making a difference</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="animate-pulse space-y-4">
+              <div className="h-10 w-full bg-gray-200 rounded" />
+              <div className="h-12 w-full bg-gray-200 rounded" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
 function RegisterContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -74,7 +100,7 @@ function RegisterContent() {
           <CardHeader className="text-center">
             <Link href="/" className="inline-flex items-center gap-2 mb-4">
               <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
-              <span className="text-sm font-bold uppercase tracking-[0.18em]">Community Hero</span>
+              <span className="text-sm font-bold uppercase tracking-tighter">Community Hero</span>
             </Link>
             <CardTitle className="text-2xl font-bold uppercase tracking-tight">Enroll</CardTitle>
             <CardDescription>Join thousands of citizens making a difference</CardDescription>
@@ -205,29 +231,8 @@ function RegisterContent() {
 
 export default function RegisterPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
-          <div className="w-full max-w-md">
-            <Card className="w-full max-w-md">
-              <CardHeader className="text-center">
-                <Link href="/" className="inline-flex items-center gap-2 mb-4">
-                  <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
-                  <span className="text-sm font-bold uppercase tracking-[0.18em]">Community Hero</span>
-                </Link>
-                <CardTitle className="text-2xl font-bold uppercase tracking-tight">Create Account</CardTitle>
-                <CardDescription>Join thousands of citizens making a difference</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="animate-pulse space-y-4">
-                  <div className="h-10 w-full bg-gray-200 rounded" />
-                  <div className="h-12 w-full bg-gray-200 rounded" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </Suspense>
-    )
-  }
+    <Suspense fallback={<RegisterFallback />}>
+      <RegisterContent />
+    </Suspense>
+  )
 }

@@ -12,6 +12,32 @@ import { useAuth } from "@/hooks/use-auth"
 import { cn } from "@/lib/utils"
 import { Suspense } from "react"
 
+function LoginFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="barcode-strip mb-0 h-4 w-full border border-b-0 border-black" aria-hidden="true" />
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <Link href="/" className="inline-flex items-center gap-2 mb-4">
+              <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
+              <span className="text-sm font-bold uppercase tracking-tighter">Community Hero</span>
+            </Link>
+            <CardTitle className="text-2xl font-bold uppercase tracking-tight">Access</CardTitle>
+            <CardDescription>Sign in to your account to continue</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="animate-pulse space-y-4">
+              <div className="h-10 w-full bg-gray-200 rounded" />
+              <div className="h-12 w-full bg-gray-200 rounded" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
 function LoginContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -55,7 +81,7 @@ function LoginContent() {
           <CardHeader className="text-center">
             <Link href="/" className="inline-flex items-center gap-2 mb-4">
               <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
-              <span className="text-sm font-bold uppercase tracking-[0.18em]">Community Hero</span>
+              <span className="text-sm font-bold uppercase tracking-tighter">Community Hero</span>
             </Link>
             <CardTitle className="text-2xl font-bold uppercase tracking-tight">Access</CardTitle>
             <CardDescription>Sign in to your account to continue</CardDescription>
@@ -153,7 +179,7 @@ function LoginContent() {
             </Button>
 
             <p className="text-center text-sm text-black/60">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href={`/register?callbackUrl=${callbackUrl}`} className="font-semibold text-black underline underline-offset-4 hover:no-underline">
                 Sign up
               </Link>
@@ -167,29 +193,8 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
-          <div className="w-full max-w-md">
-            <Card className="w-full max-w-md">
-              <CardHeader className="text-center">
-                <Link href="/" className="inline-flex items-center gap-2 mb-4">
-                  <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
-                  <span className="text-sm font-bold uppercase tracking-[0.18em]">Community Hero</span>
-                </Link>
-                <CardTitle className="text-2xl font-bold uppercase tracking-tight">Access</CardTitle>
-                <CardDescription>Sign in to your account to continue</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="animate-pulse space-y-4">
-                  <div className="h-10 w-full bg-gray-200 rounded" />
-                  <div className="h-12 w-full bg-gray-200 rounded" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </Suspense>
-    )
+    <Suspense fallback={<LoginFallback />}>
+      <LoginContent />
+    </Suspense>
   )
 }
