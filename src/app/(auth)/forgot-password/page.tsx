@@ -9,8 +9,9 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { useAuth } from "@/hooks/use-auth"
 import { cn } from "@/lib/utils"
+import { Suspense } from "react"
 
-export default function ForgotPasswordPage() {
+function ForgotPasswordContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") || "/login"
@@ -119,5 +120,32 @@ export default function ForgotPasswordPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function ForgotPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
+        <div className="w-full max-w-md">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <Link href="/" className="inline-flex items-center gap-2 mb-4">
+                <span className="barcode-strip inline-block h-6 w-12" aria-hidden="true" />
+                <span className="text-sm font-bold uppercase tracking-[0.18em]">Community Hero</span>
+              </Link>
+              <CardTitle className="text-2xl font-bold uppercase tracking-tight">Reset Password</CardTitle>
+              <CardDescription>Enter your email to receive a password reset link</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="animate-pulse space-y-4">
+                <div className="h-10 w-full bg-gray-200 rounded" />
+                <div className="h-12 w-full bg-gray-200 rounded" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </Suspense>
   )
 }
